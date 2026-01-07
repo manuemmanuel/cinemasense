@@ -1,0 +1,21 @@
+.panel {
+  padding: 12px 14px;
+  flex: 1;
+}
+
+.header {
+  font-size: 9px;
+  font-weight: 600;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+

@@ -1,0 +1,26 @@
+.panel {
+  padding: 24px 28px;
+  text-align: center;
+  border-bottom: 1px solid #151515;
+  background: #0a0a0a;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.label {
+  font-size: 9px;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.score {
+  font-size: 64px;
+  font-weight: 700;
+  font-family: var(--font-space-grotesk), sans-serif;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+

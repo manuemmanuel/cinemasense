@@ -1,0 +1,26 @@
+{
+  "appId": "com.cinemasense.app",
+  "productName": "CinemaSense",
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "out/**/*",
+    "electron/**/*",
+    "node_modules/**/*",
+    "package.json"
+  ],
+  "win": {
+    "target": "nsis",
+    "icon": "build/icon.ico"
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "build/icon.icns"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "build/icon.png"
+  }
+}
+

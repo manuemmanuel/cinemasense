@@ -1,0 +1,68 @@
+.titlebar {
+  height: 28px;
+  background: #0f0f0f;
+  border-bottom: 1px solid #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  user-select: none;
+  -webkit-app-region: drag;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.titlebarLeft {
+  display: flex;
+  align-items: center;
+  -webkit-app-region: no-drag;
+}
+
+.title {
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--font-space-grotesk), sans-serif;
+  letter-spacing: 1.2px;
+  color: #6a6a6a;
+  text-transform: uppercase;
+}
+
+.titlebarRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  -webkit-app-region: no-drag;
+}
+
+.fps {
+  font-size: 10px;
+  color: #5a5a5a;
+  font-family: var(--font-space-grotesk), sans-serif;
+  margin-right: 4px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.windowButton {
+  width: 28px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  color: #6a6a6a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1px;
+  transition: all 0.15s ease;
+}
+
+.windowButton:hover {
+  background: #1a1a1a;
+  color: #b0b0b0;
+}
+
+.closeButton:hover {
+  background: #5a1f1f;
+  color: #ff6a6a;
+}
+

@@ -1,0 +1,105 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+.sectionTitle {
+  font-size: 9px;
+  font-weight: 600;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #5a5a5a;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border-bottom: 1px solid #151515;
+  padding-bottom: 6px;
+}
+
+.content {
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #888888;
+  line-height: 1.5;
+  font-size: 12px;
+}
+
+.content p {
+  margin: 6px 0;
+}
+
+.content strong {
+  color: #b0b0b0;
+  font-weight: 600;
+}
+
+.insight {
+  color: #9a9a9a;
+  font-size: 12px;
+  line-height: 1.6;
+  font-style: normal;
+  margin: 8px 0;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.metric {
+  background: #0a0a0a;
+  border: 1px solid #151515;
+  padding: 10px 12px;
+}
+
+.metricLabel {
+  font-size: 8px;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #4a4a4a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.metricValue {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #d0d0d0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.sessionInfo {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+  font-size: 11px;
+  color: #888888;
+}
+
+.sessionInfoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 4px 0;
+  border-bottom: 1px solid #151515;
+}
+
+.sessionInfoLabel {
+  color: #5a5a5a;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.sessionInfoValue {
+  color: #b0b0b0;
+  font-weight: 500;
+  font-size: 11px;
+}
+

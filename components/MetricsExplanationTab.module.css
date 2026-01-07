@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #e0e0e0;
+}
+
+.sectionTitle {
+  font-size: 9px;
+  font-weight: 600;
+  color: #5a5a5a;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  border-bottom: 1px solid #151515;
+  padding-bottom: 6px;
+}
+
+.content {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #888888;
+  margin-bottom: 6px;
+}
+
+.content p {
+  margin: 8px 0;
+}
+
+.content ol,
+.content ul {
+  margin: 12px 0;
+  padding-left: 24px;
+}
+
+.content li {
+  margin: 6px 0;
+}
+
+.content strong {
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.content em {
+  color: #888;
+  font-style: italic;
+}
+

@@ -1,0 +1,28 @@
+.panel {
+  padding: 12px 14px;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.header {
+  font-size: 9px;
+  font-weight: 600;
+  font-family: var(--font-space-grotesk), sans-serif;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.daw-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+}
+
