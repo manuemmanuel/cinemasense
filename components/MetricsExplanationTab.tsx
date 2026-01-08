@@ -88,21 +88,6 @@ export default function MetricsExplanationTab() {
         <p><strong>Result:</strong> Emotion name and percentage</p>
       </div>
 
-      <h2 className={styles.sectionTitle}>Transition Matrix</h2>
-      <div className={styles.content}>
-        <p><strong>What it measures:</strong> How emotions change from one to another (emotional flow patterns).</p>
-        <p><strong>How it's calculated:</strong></p>
-        <ol>
-          <li>Track emotion sequences for each person chronologically</li>
-          <li>Identify consecutive emotion pairs (transitions)</li>
-          <li>Count how many times each transition occurred</li>
-          <li>Build matrix: Rows = "From" emotions, Columns = "To" emotions</li>
-          <li>Normalize to percentages for each row</li>
-        </ol>
-        <p><strong>Result:</strong> Matrix showing transition probabilities</p>
-        <p><em>Shows which emotions tend to follow others, revealing emotional patterns.</em></p>
-      </div>
-
       <h2 className={styles.sectionTitle}>Emotion Distribution</h2>
       <div className={styles.content}>
         <p><strong>What it measures:</strong> How many times each emotion was detected (simple count).</p>
@@ -116,19 +101,6 @@ export default function MetricsExplanationTab() {
         <p><em>Used for bar charts and visualizations.</em></p>
       </div>
 
-      <h2 className={styles.sectionTitle}>Per-Person Metrics</h2>
-      <div className={styles.content}>
-        <p><strong>What they measure:</strong> Individual metrics for each person detected.</p>
-        <p><strong>For each person:</strong></p>
-        <ul>
-          <li><strong>Volatility:</strong> Emotion change frequency for that person only</li>
-          <li><strong>Entropy:</strong> Emotion diversity for that person only</li>
-          <li><strong>Reflection Score:</strong> Match rate for that person (Matches ÷ Checks)</li>
-          <li><strong>Duration:</strong> How long that person was visible (first to last detection)</li>
-          <li><strong>Detection Count:</strong> Total number of detections for that person</li>
-        </ul>
-        <p><em>Useful for understanding individual differences and which people matched expected emotion best.</em></p>
-      </div>
     </div>
   );
 }

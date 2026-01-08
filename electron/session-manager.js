@@ -229,7 +229,9 @@ class SessionManager {
       ...finalMetrics,
     };
     
-    session.total_people = totalPeople || Object.keys(session.person_timelines).length;
+    // Use person_timelines as source of truth for total unique people detected during session
+    // totalPeople parameter represents currently active people, not total unique people
+    session.total_people = Object.keys(session.person_timelines || {}).length || totalPeople || 0;
     session.total_detections = session.detections.length;
     session.session_duration = endTime - session.start_time;
 

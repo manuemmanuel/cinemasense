@@ -15,9 +15,9 @@ export default function SummaryTab({ session }: SummaryTabProps) {
   const duration = session.session_duration || 0;
 
   // Calculate total unique people detected during the session
-  // Use total_people if available, otherwise calculate from person_timelines
-  const totalPeople = session.total_people || session.totalPeople || 
-    (session.person_timelines ? Object.keys(session.person_timelines).length : 0);
+  // Use person_timelines as source of truth (most accurate), fallback to total_people
+  const totalPeople = (session.person_timelines ? Object.keys(session.person_timelines).length : 0) ||
+    session.total_people || session.totalPeople || 0;
 
   // Convert Unix timestamp to Date if needed
   const startDate = startTime ? (typeof startTime === 'number' ? new Date(startTime * 1000) : new Date(startTime)) : null;
