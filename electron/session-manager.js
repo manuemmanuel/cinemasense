@@ -419,14 +419,21 @@ class SessionManager {
         continue;
       }
 
-      const sequence = timeline.map(d => d.emotion || 'neutral');
-      
+      // Extract emotion sequence, filtering out 'detecting' and ensuring valid emotions
+      const sequence = timeline
+        .map(d => {
+          const emotion = d.emotion || 'neutral';
+          return emotion.toLowerCase().trim();
+        })
+        .filter(emotion => emotion !== 'detecting' && emotion !== '');
+
       if (sequence.length < 2) {
-        console.log(`Person ${id} has only ${sequence.length} detection(s), volatility = 0`);
+        console.log(`Person ${id} has only ${sequence.length} valid detection(s), volatility = 0`);
         perPerson[id] = 0;
         continue;
       }
 
+      // Count emotion transitions (changes)
       let changes = 0;
       for (let i = 1; i < sequence.length; i++) {
         if (sequence[i - 1] !== sequence[i]) {
@@ -434,12 +441,17 @@ class SessionManager {
         }
       }
 
-      const volatility = changes / sequence.length;
+      // Volatility = changes / (sequence.length - 1)
+      // Maximum possible changes is (n-1) for n detections
+      // This normalizes to 0-1 range where 1 = maximum volatility (every detection differs)
+      const maxPossibleChanges = sequence.length - 1;
+      const volatility = maxPossibleChanges > 0 ? changes / maxPossibleChanges : 0;
+      
       perPerson[id] = volatility;
       totalVolatility += volatility;
       personCount++;
       
-      console.log(`Person ${id}: ${changes} changes in ${sequence.length} detections = ${(volatility * 100).toFixed(1)}% volatility`);
+      console.log(`Person ${id}: ${changes} changes in ${sequence.length} detections (max: ${maxPossibleChanges}) = ${(volatility * 100).toFixed(1)}% volatility`);
     }
 
     const average = personCount > 0 ? totalVolatility / personCount : 0;
@@ -467,9 +479,16 @@ class SessionManager {
         continue;
       }
 
-      const sequence = timeline.map(d => d.emotion || 'neutral');
+      // Extract and normalize emotions, filtering out invalid ones
+      const sequence = timeline
+        .map(d => {
+          const emotion = (d.emotion || 'neutral').toLowerCase().trim();
+          return emotion;
+        })
+        .filter(emotion => emotion !== 'detecting' && emotion !== '' && emotion !== null && emotion !== undefined);
       
       if (sequence.length === 0) {
+        console.warn(`Person ${id} has no valid emotions after filtering`);
         perPerson[id] = 0;
         continue;
       }
@@ -483,7 +502,7 @@ class SessionManager {
 
       console.log(`Person ${id} emotion counts:`, counts, `(total: ${sequence.length})`);
 
-      // Calculate entropy
+      // Calculate Shannon entropy: H(X) = -Σ(p(x) × log₂(p(x)))
       let entropy = 0;
       const total = sequence.length;
       const emotionProbabilities = {};
@@ -492,8 +511,15 @@ class SessionManager {
         const p = count / total;
         emotionProbabilities[emotion] = p;
         if (p > 0) {
+          // Use Math.log2 with proper handling
           entropy -= p * Math.log2(p);
         }
+      }
+
+      // Ensure entropy is a valid number
+      if (isNaN(entropy) || !isFinite(entropy)) {
+        console.warn(`Person ${id} entropy calculation resulted in invalid value: ${entropy}`);
+        entropy = 0;
       }
 
       perPerson[id] = entropy;
@@ -505,7 +531,7 @@ class SessionManager {
       }
     }
 
-    // Calculate session entropy
+    // Calculate session entropy from all emotions
     let sessionEntropy = 0;
     if (allEmotions.length > 0) {
       const counts = {};
@@ -524,6 +550,12 @@ class SessionManager {
         if (p > 0) {
           sessionEntropy -= p * Math.log2(p);
         }
+      }
+
+      // Ensure session entropy is valid
+      if (isNaN(sessionEntropy) || !isFinite(sessionEntropy)) {
+        console.warn(`Session entropy calculation resulted in invalid value: ${sessionEntropy}`);
+        sessionEntropy = 0;
       }
 
       console.log(`Session entropy: ${sessionEntropy.toFixed(3)} (probabilities:`, emotionProbabilities, ')');

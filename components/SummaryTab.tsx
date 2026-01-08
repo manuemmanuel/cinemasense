@@ -14,6 +14,11 @@ export default function SummaryTab({ session }: SummaryTabProps) {
   const endTime = session.end_time || session.endTime;
   const duration = session.session_duration || 0;
 
+  // Calculate total unique people detected during the session
+  // Use total_people if available, otherwise calculate from person_timelines
+  const totalPeople = session.total_people || session.totalPeople || 
+    (session.person_timelines ? Object.keys(session.person_timelines).length : 0);
+
   // Convert Unix timestamp to Date if needed
   const startDate = startTime ? (typeof startTime === 'number' ? new Date(startTime * 1000) : new Date(startTime)) : null;
   const endDate = endTime ? (typeof endTime === 'number' ? new Date(endTime * 1000) : new Date(endTime)) : null;
@@ -50,7 +55,7 @@ export default function SummaryTab({ session }: SummaryTabProps) {
         </div>
         <div className={styles.sessionInfoRow}>
           <span className={styles.sessionInfoLabel}>People</span>
-          <span className={styles.sessionInfoValue}>{session.total_people || session.totalPeople || 0}</span>
+          <span className={styles.sessionInfoValue}>{totalPeople}</span>
         </div>
       </div>
 
@@ -68,7 +73,7 @@ export default function SummaryTab({ session }: SummaryTabProps) {
       <div className={styles.metricsGrid}>
         <div className={styles.metric}>
           <div className={styles.metricLabel}>People</div>
-          <div className={styles.metricValue}>{session.total_people || metrics.peopleCount || 0}</div>
+          <div className={styles.metricValue}>{totalPeople}</div>
         </div>
         <div className={styles.metric}>
           <div className={styles.metricLabel}>Volatility</div>
